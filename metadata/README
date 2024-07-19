@@ -1,0 +1,19 @@
+1.py 
+genera los links de las páginas de resultados de tesiunam
+usando un loop que busca y entra los links del botón "Siguiente"
+
+Antes de usarlo hay que crear un archivo llamado "url_manual.txt"
+con el URL de la primera página de resultados, y uno llamado
+"urls_results_pages.txt"
+
+Hay que checar manualmente el numero de iteraciones del loop del final
+
+0.1.py
+creo que no sirve de nada [CORROBORAR]
+
+0.2.py
+hace un JSON con el autor, titulo y año de todas las tesis de
+"urls_results_pages.txt"
+FALTA: que el JSON tenga un formato en el que no esten agrupada lasa cosas
+
+0.3.py
