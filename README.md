@@ -1,7 +1,7 @@
 # crawler
 Descarga los trabajos de titulación (pdf)de TESIUNAM junto con los metadatos (JSON)
 
-Está pensado para que correr los programas 2.py, luego 3, 4, y así consecutivamente. 1.py no funciona,
+Está pensado para que corras los programas 2.py, luego 3, 4, y así consecutivamente. 1.py no funciona,
 pero lo mantengo para propósitos históricos.
 
 Instrucciones rascuachas:
