@@ -6,30 +6,30 @@ import requests
 import re
 from bs4 import BeautifulSoup
 
-# Read in the URLs from the text file
+# leer los urls de "clean_links.txt"
 with open('clean_links.txt', 'r') as f:
     urls = f.readlines()
 
-# Loop over each URL
+# bucle por cada url
 for url in urls:
-    # Make a GET request to the page and get the HTML content
+    # hacer una solicitud GET y conseguir el HTML
     response = requests.get(url.strip())
     html_content = response.content
 
-    # Parse the HTML content with BeautifulSoup
+    # leer el HTML con BeautifulSoup
     soup = BeautifulSoup(response.content, "html.parser")
 
-    # Find all frames in the HTML content
+    # encontrar todos los frames
     frames = soup.find_all('frame')
 
-    # Access the second frame (index 1)
+    # acceder al segundo frame (índice 1)
     second_frame = frames[1]
 
-    # Make it a string
+    # hacerlo un string
     second_frame_str = str(second_frame)
 
-    # Get the url
+    # conseguir el url
     pdf_path = re.search('src="([^"]+)"', second_frame_str).group(1)
 
-    # Print the path to the PDF file
+    # imprimir el url
     print(pdf_path)
