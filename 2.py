@@ -12,37 +12,37 @@
 import requests
 from bs4 import BeautifulSoup
 
-# Clear the contents of the links.txt file
+# vaciar "links.txt"
 with open("links.txt", "w") as file:
     file.write("")
 
-# Read in the URLs from the text file
+# leer los urls de "urls.txt"
 with open('urls.txt', 'r') as f:
     urls = f.readlines()
 
-# Loop over each URL
+# bucle por cada url
 for url in urls:
-    # Make a GET request to the page and get the HTML content
+    # hacer una solicitud GET y conseguir el HTML
     response = requests.get(url.strip())
     html_content = response.content
 
-    # Parse the HTML content with BeautifulSoup
+    # leer el HTML con BeautifulSoup
     soup = BeautifulSoup(html_content, "html.parser")
 
-    # Find the results table on the page
+    # encontrar la tabla de resultados
     table = soup.find("table", {"class": "table table-bordered table-hover table-sm"})
     print("TABLE", table)
 
-    # Find all rows in the table (excluding the header row)
+    # encontrar todas las filas en la tabla, excepto la fila header
     rows = table.find_all("tr")[1:]
 
-    # Extract the links from the sixth column of each row
+    # extraer los links de la sexta columna de cada fila
     links = []
     for row in rows:
         cells = row.find_all("td")
         link = cells[5].find("a")["href"]
         links.append(link)
 
-    # Save the links to a text file
+    # guardar los links a un .txt
     with open("links.txt", "a") as file:
         file.write("\n".join(links) + "\n")
