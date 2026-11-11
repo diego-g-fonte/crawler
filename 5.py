@@ -1,7 +1,7 @@
 # Necesita no existir "pdf_links.txt"
-# Define the function to transform a URL to a PDF link
+# definir la función que transforma un url a un link de pdf
 def transform_url_to_pdf(url):
-    # Extract relevant parts of the URL
+    # extraer las partes relevantes del url
     parts = url.split('/')
     month = parts[-3]
     code = parts[-2]
@@ -20,20 +20,20 @@ def transform_url_to_pdf(url):
 
     return pdf_link
 
-# Input and output file paths
+# Input y output de links
 input_file_path = 'static_urls2.txt'
 output_file_path = 'pdf_links.txt'
 
-# Read the input URLs from the file
+# leer los urls input
 with open(input_file_path, 'r') as input_file:
     input_urls = input_file.read().splitlines()
 
-# Transform the URLs and store them in a list
+# transformar los urls y guardarlos en una lista
 pdf_links = [transform_url_to_pdf(url) for url in input_urls]
 
 print(pdf_links)
 
-# Write the transformed PDF links to the output file
+# escribir los urls transformados en "pdf_links.txt"
 with open(output_file_path, 'w') as output_file:
     for pdf_link in pdf_links:
         output_file.write(pdf_link + '\n')
