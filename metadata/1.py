@@ -11,39 +11,39 @@ import requests
 from bs4 import BeautifulSoup
 import re
 
-# Get the URL for the first results page
+# Sacar el url de la primera página de resultados
 with open('url_manual.txt', 'r') as f:
     url_manual = f.readlines()
     url_manual = url_manual[0]
 
-# add the first url to the variable 'url_list
+# añadir el primer url a a la variable "url_list"
 url_list = list()
 url_list.append(url_manual)
 
-# Empty "urls_results_pages.txt"
+# Vaciar "urls_results_pages.txt"
 with open('urls_results_pages.txt', 'w') as f:
     f.write("")
 
-# Make a GET request to the page and get the HTML content
+# Hacer una solicitud GET a la página y conseguir el contenido HTML
 response = requests.get(url_manual)
 html_content = response.content
 
-# Create a soup of the first results page
+# Hacer una soup de la primera página de resultados
 soup = BeautifulSoup(html_content, "html.parser")
 
-# Find the "Siguiente" link
+# Encontrar el link de "Siguiente"
 next_page_link = soup.find_all('a', title="Next")
 next_page_link = str(next_page_link)
 
-# extract the URL using regular expressions
+# Sacar el url usando regex
 match = re.search(r'href="(.*?)"', next_page_link)
 url = match.group(1)
 url = url.replace('&amp;', '&')
 
-# add the second url to 'url_list'
+# añadir el segundo url a 'url_list'
 url_list.append(url)
 
-# Loop that gets and enters the "Siguente" links INCOMPLETO
+# bucle que consigue y le pone enter al link "siguiente" INCOMPLETO
 url_loop = url
 
 for i in range(46):     # El numero es 46, porque son 48 páginas de resultados
@@ -59,6 +59,6 @@ for i in range(46):     # El numero es 46, porque son 48 páginas de resultados
     url_loop = url_loop.replace('&amp;', '&')
     url_list.append(url_loop)
 
-# Save the links to a text file
+# guarda los links a un .txt
 with open("urls_results_pages.txt", "a") as file:
     file.write("\n".join(url_list) + "\n")
