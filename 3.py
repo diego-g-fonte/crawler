@@ -6,7 +6,7 @@ import re
 input_file = "links.txt"
 output_file = "clean_links.txt"
 
-# Clear the contents of the links.txt file
+# vaciar "links.txt"
 with open(output_file, "w") as file:
     file.write("")
 
